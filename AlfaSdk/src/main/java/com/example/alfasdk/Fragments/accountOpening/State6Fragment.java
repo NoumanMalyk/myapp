@@ -30,10 +30,16 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "State5Fragment";
 
+    TextInputLayout tilOccupation;
+    TextInputLayout textInputLayoutOther;
+    TextInputLayout tilGrossAnnualIncome;
+    TextInputLayout tilIncomeSource;
+
+
     private ImageView ivBack;
     private TextView tvTitle;
     private AutoCompleteTextView atvOccupation;
-    private TextInputLayout textInputLayoutOther;
+
     private TextInputEditText etOtherOccupation;
 
     private AutoCompleteTextView atvGrossAnnualIncome;
@@ -57,11 +63,11 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
     boolean isDepartmentEnabledEnabled = false;
     boolean isEmployerAddressEnabled = false;
 
-    String[] mListOccupations = { "Agriculturist", "Business", "Housewife", "Household", "Retired Person", "Student", "Business Executive", "Industrialist", "Professional", "Service", "Govt./Public Sector", "Others" };
-//    String[] mListGrossAnnualIncomes = { "Below Rs. 100,000", "Rs. 100,001 - Rs. 250,000", "Rs. 250,001 - Rs. 500,000", "Rs. 500,001 - Rs. 1,000,000", "Rs. 1,000,001 - Rs. 2,500,000", "Above Rs. 2,500,001" };
+    String[] mListOccupations = {"Agriculturist", "Business", "Housewife", "Household", "Retired Person", "Student", "Business Executive", "Industrialist", "Professional", "Service", "Govt./Public Sector", "Others"};
+    //    String[] mListGrossAnnualIncomes = { "Below Rs. 100,000", "Rs. 100,001 - Rs. 250,000", "Rs. 250,001 - Rs. 500,000", "Rs. 500,001 - Rs. 1,000,000", "Rs. 1,000,001 - Rs. 2,500,000", "Above Rs. 2,500,001" };
 //    String[] mListIncomeItems = { "100,000", "100,001", "250,001", "500,001", "1,000,001", "2,500,001" };
-    String[] mListGrossAnnualIncomes = { "Up to Rs. 100,000", "Rs. 100,001 - Rs. 250,000", "Rs. 250,001 - Rs. 500,000", "Above Rs. 500,000" };
-    String[] mListIncomeItems = { "100,000", "100,001", "250,001", "500,001"};
+    String[] mListGrossAnnualIncomes = {"Up to Rs. 100000", "Rs. 100001 - Rs. 250000", "Rs. 250001 - Rs. 500000", "Above Rs. 500000"};
+    String[] mListIncomeItems = {"100000", "100001", "250001", "500001"};
 
 
     @Override
@@ -79,6 +85,18 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
 
     private void initViews(View view) {
 
+        tilOccupation = view.findViewById(R.id.tilOccupation);
+        textInputLayoutOther = view.findViewById(R.id.textInputLayoutOther);
+        tilGrossAnnualIncome = view.findViewById(R.id.tilGrossAnnualIncome);
+        tilIncomeSource = view.findViewById(R.id.tilIncomeSource);
+
+        textInputLayoutEmployerName = view.findViewById(R.id.textInputLayoutEmployerName);
+        textInputLayoutEmployerJobTitle = view.findViewById(R.id.textInputLayoutEmployerJobTitle);
+        textInputLayoutEmployerDepartment = view.findViewById(R.id.textInputLayoutEmployerDepartment);
+        textInputLayoutEmployerAddress = view.findViewById(R.id.textInputLayoutEmployerAddress);
+        textInputLayoutZakatStatus = view.findViewById(R.id.textInputLayoutZakatStatus);
+
+
         ivBack = view.findViewById(R.id.ivBack);
         tvTitle = view.findViewById(R.id.tvTitle);
         atvOccupation = view.findViewById(R.id.atvOccupation);
@@ -92,11 +110,6 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
         etDepartment = view.findViewById(R.id.etDepartment);
         etEmployerAddress = view.findViewById(R.id.etEmployerAddress);
         etZakatStatus = view.findViewById(R.id.etZakatStatus);
-        textInputLayoutEmployerName = view.findViewById(R.id.textInputLayoutEmployerName);
-        textInputLayoutEmployerJobTitle = view.findViewById(R.id.textInputLayoutEmployerJobTitle);
-        textInputLayoutEmployerDepartment = view.findViewById(R.id.textInputLayoutEmployerDepartment);
-        textInputLayoutEmployerAddress = view.findViewById(R.id.textInputLayoutEmployerAddress);
-        textInputLayoutZakatStatus = view.findViewById(R.id.textInputLayoutZakatStatus);
 
 
         btnNext = view.findViewById(R.id.btnNext);
@@ -107,15 +120,15 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
         atvGrossAnnualIncome.setOnClickListener(this);
 
         atvOccupation.setOnItemClickListener((adapterView, view1, i, l) -> {
-            if(mListOccupations[i].equals("Others")){
+            if (mListOccupations[i].equals("Others")) {
                 isOtherOccupationEnabled = true;
                 textInputLayoutOther.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 isOtherOccupationEnabled = false;
                 textInputLayoutOther.setVisibility(View.GONE);
-                if(mListOccupations[i].equals("Agriculturist") || mListOccupations[i].equals("Housewife") || mListOccupations[i].equals("Household") || mListOccupations[i].equals("Retired Person") || mListOccupations[i].equals("Student")){
+                if (mListOccupations[i].equals("Agriculturist") || mListOccupations[i].equals("Housewife") || mListOccupations[i].equals("Household") || mListOccupations[i].equals("Retired Person") || mListOccupations[i].equals("Student")) {
                     disableEmployerFields();
-                }else{
+                } else {
                     enableEmployerFields();
                 }
             }
@@ -137,31 +150,30 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
         etDepartment.setText(obj.getDEPARTMENT());
         etEmployerAddress.setText(obj.getEMPLOYERADDRESS());
 
-        if(obj.getZAKATSTATUS().isEmpty() || obj.getZAKATSTATUS()==null){
+        if (obj.getZAKATSTATUS().isEmpty() || obj.getZAKATSTATUS() == null) {
             etZakatStatus.setText("Active");
             obj.setZAKATSTATUS("A");
-        }else{
-            if(obj.getZAKATSTATUS().equals("A")){
+        } else {
+            if (obj.getZAKATSTATUS().equals("A")) {
                 etZakatStatus.setText("Active");
-            }else if(obj.getZAKATSTATUS().equals("N")){
+            } else if (obj.getZAKATSTATUS().equals("N")) {
                 etZakatStatus.setText("Non-Active");
             }
         }
+        textInputLayoutZakatStatus.setVisibility(View.GONE);
 
-        if(
+
+        if (
                 obj.getOCCUPATION().equals("Agriculturist") ||
-                obj.getOCCUPATION().equals("Housewife") ||
-                obj.getOCCUPATION().equals("Household") ||
-                obj.getOCCUPATION().equals("Retired Person")||
-                obj.getOCCUPATION().equals("Student")
-        )
-        {
+                        obj.getOCCUPATION().equals("Housewife") ||
+                        obj.getOCCUPATION().equals("Household") ||
+                        obj.getOCCUPATION().equals("Retired Person") ||
+                        obj.getOCCUPATION().equals("Student")
+        ) {
             disableEmployerFields();
-        }
-        else if(obj.getOCCUPATION().equals("Others)") || obj.getOCCUPATION().equals("Others (Specify)")){
+        } else if (obj.getOCCUPATION().equals("Others)") || obj.getOCCUPATION().equals("Others (Specify)")) {
             isOtherOccupationEnabled = true;
-        }
-        else{
+        } else {
             enableEmployerFields();
         }
 
@@ -175,11 +187,11 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void enableEmployerFields(){
-        isEmployerNameEnabled=true;
-        isJobTitleEnabled=true;
-        isDepartmentEnabledEnabled=true;
-        isEmployerAddressEnabled=true;
+    private void enableEmployerFields() {
+        isEmployerNameEnabled = true;
+        isJobTitleEnabled = true;
+        isDepartmentEnabledEnabled = true;
+        isEmployerAddressEnabled = true;
 
         textInputLayoutEmployerName.setVisibility(View.VISIBLE);
         textInputLayoutEmployerJobTitle.setVisibility(View.VISIBLE);
@@ -187,11 +199,11 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
         textInputLayoutEmployerAddress.setVisibility(View.VISIBLE);
     }
 
-    private void disableEmployerFields(){
-        isEmployerNameEnabled=false;
-        isJobTitleEnabled=false;
-        isDepartmentEnabledEnabled=false;
-        isEmployerAddressEnabled=false;
+    private void disableEmployerFields() {
+        isEmployerNameEnabled = false;
+        isJobTitleEnabled = false;
+        isDepartmentEnabledEnabled = false;
+        isEmployerAddressEnabled = false;
 
         textInputLayoutEmployerName.setVisibility(View.GONE);
         textInputLayoutEmployerJobTitle.setVisibility(View.GONE);
@@ -200,11 +212,13 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
     }
 
     private void setInputsEditAble() {
-        if(obj.getOCCUPATION().isEmpty() || obj.getOCCUPATION()==null){
-            isOccupationEnabled=true;
+        if (obj.getOCCUPATION().isEmpty() || obj.getOCCUPATION() == null) {
+            isOccupationEnabled = true;
+        } else {
+            tilOccupation.setVisibility(View.GONE);
         }
 
-        if(isOtherOccupationEnabled){
+        if (isOtherOccupationEnabled) {
             textInputLayoutOther.setVisibility(View.VISIBLE);
         }
 
@@ -212,103 +226,100 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if(view.getId()==R.id.atvOccupation){
-            if(isOccupationEnabled){
+        if (view.getId() == R.id.atvOccupation) {
+            if (isOccupationEnabled) {
                 atvOccupation.showDropDown();
             }
-        }
-        else if(view.getId()==R.id.atvGrossAnnualIncome){
+        } else if (view.getId() == R.id.atvGrossAnnualIncome) {
             atvGrossAnnualIncome.showDropDown();
-        }
-        else if(view.getId()==R.id.btnNext){
-            if(isValidInputs()){
+        } else if (view.getId() == R.id.btnNext) {
+            if (isValidInputs()) {
                 Util.performNavigation(requireActivity(), R.id.action_state6Fragment_to_state10Fragment);
             }
-        }
-        else if(view.getId()==R.id.ivBack){
+        } else if (view.getId() == R.id.ivBack) {
             requireActivity().onBackPressed();
         }
     }
 
     private Boolean isValidInputs() {
 
-        if(atvOccupation.getText().toString().isEmpty()){
+        if (atvOccupation.getText().toString().isEmpty()) {
             //Show Alert
             Alert.show(requireActivity(), "", "Please select your Occupation.");
             return false;
-        }else{
+        } else {
             obj.setOCCUPATION(atvOccupation.getText().toString());
         }
 
-        if(isOtherOccupationEnabled){
-            if(etOtherOccupation.getText().toString().isEmpty()){
+        if (isOtherOccupationEnabled) {
+            if (etOtherOccupation.getText().toString().isEmpty()) {
                 Util.setInputError(etOtherOccupation);
                 return false;
-            }else{
+            } else {
                 obj.setOCCUPATION(etOtherOccupation.getText().toString());
             }
         }
 
-        if(atvGrossAnnualIncome.getText().toString().isEmpty()){
+        if (atvGrossAnnualIncome.getText().toString().isEmpty()) {
             //Show Alert
             Alert.show(requireActivity(), "", "Please select your Gross Annual Income.");
             return false;
         }
 
-        if(etIncomeSource.getText().toString().isEmpty()){
+        if (etIncomeSource.getText().toString().isEmpty()) {
             etIncomeSource.setError("Please enter source of income.");
             etIncomeSource.requestFocus();
             return false;
-        }else{
+        } else {
             obj.setSOURCEOFINCOME(etIncomeSource.getText().toString());
         }
 
-        if(isEmployerNameEnabled){
-            if(etEmployerName.getText().toString().isEmpty()){
+        if (isEmployerNameEnabled) {
+            if (etEmployerName.getText().toString().isEmpty()) {
                 etEmployerName.setError("Please enter name of employer / Business.");
                 etEmployerName.requestFocus();
                 return false;
-            }else{
+            } else {
                 obj.setEMPLOYERNAME(etEmployerName.getText().toString());
             }
-        }else{
-            obj.setEMPLOYERNAME("");
+        } else {
+            obj.setEMPLOYERNAME("NA");
         }
 
-        if(isJobTitleEnabled){
-            if(etJobTitle.getText().toString().isEmpty()){
+        if (isJobTitleEnabled) {
+            if (etJobTitle.getText().toString().isEmpty()) {
                 etJobTitle.setError("Please enter Job title / Designation.");
                 etJobTitle.requestFocus();
                 return false;
-            }else{
+            } else {
                 obj.setJOBTITLE(etJobTitle.getText().toString());
             }
-        }else{
-            obj.setJOBTITLE("");
+        } else {
+            obj.setJOBTITLE("NA");
         }
 
-        if(isDepartmentEnabledEnabled){
-            if(etDepartment.getText().toString().isEmpty()){
+        if (isDepartmentEnabledEnabled) {
+            if (etDepartment.getText().toString().isEmpty()) {
                 etDepartment.setError("Please enter department.");
                 etDepartment.requestFocus();
                 return false;
-            }else{
+            } else {
                 obj.setDEPARTMENT(etDepartment.getText().toString());
             }
-        }else{
-            obj.setDEPARTMENT("");
+        } else {
+            obj.setDEPARTMENT("NA");
         }
 
-        if(isEmployerAddressEnabled){
-            if(etEmployerAddress.getText().toString().isEmpty()){
+        if (isEmployerAddressEnabled) {
+            if (etEmployerAddress.getText().toString().isEmpty()) {
                 etEmployerAddress.setError("Please enter address of employer.");
                 etEmployerAddress.requestFocus();
                 return false;
-            }else{
+            } else {
                 obj.setEMPLOYERADDRESS(etEmployerAddress.getText().toString());
             }
-        }else{
-            obj.setEMPLOYERADDRESS("");
+        } else {
+            obj.setEMPLOYERADDRESS("NA");
         }
 
         return true;
@@ -317,9 +328,9 @@ public class State6Fragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        if(obj.getNOMINEE().equals("Y")){
+        if (obj.getNOMINEE().equals("Y")) {
             ((AccountOpeningActivity) requireActivity()).stepView.go(5, true);
-        }else{
+        } else {
             ((AccountOpeningActivity) requireActivity()).stepView.go(4, true);
         }
     }

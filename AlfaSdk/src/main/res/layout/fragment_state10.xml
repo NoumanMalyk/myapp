@@ -752,7 +752,7 @@
                     android:id="@+id/tvReferenceCode"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginStart="@dimen/_1sdp"
-                    android:text="Please input the reference code if you were referred bya BAFL branch"
+                    android:text="Please input the reference code if you were referred by a BAFL branch"
                     android:maxLines="2"
                     android:textSize="@dimen/_8ssp"
                     android:textColor="@color/blackBackground"

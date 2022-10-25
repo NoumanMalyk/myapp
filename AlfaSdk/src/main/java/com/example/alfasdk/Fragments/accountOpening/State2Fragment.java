@@ -50,6 +50,10 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
     private TextInputEditText etIssueDate;
     private TextInputLayout textInputLayoutIssueDate;
 
+
+    TextInputLayout tilIdentificationType;
+
+
     private TextInputEditText etExpiryDate;
     private TextInputLayout textInputLayoutExpiryDate;
 
@@ -64,7 +68,7 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
     boolean isExpiryDateEnabled = false;
     boolean isPlaceOfIssueEnabled = false;
 
-    String[] mListIdentificationTypes = { "CNIC", "SNIC" };
+    String[] mListIdentificationTypes = {"CNIC", "SNIC"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,21 +84,27 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
 
     private void initViews(View view) {
 
+
+        tilIdentificationType = view.findViewById(R.id.tilIdentificationType);
+        textInputLayoutCnic = view.findViewById(R.id.textInputLayoutCnic);
+        textInputLayoutIssueDate = view.findViewById(R.id.textInputLayoutIssueDate);
+        textInputLayoutExpiryDate = view.findViewById(R.id.textInputLayoutExpiryDate);
+        textInputLayoutPlace = view.findViewById(R.id.textInputLayoutPlace);
+        etExpiryDate = view.findViewById(R.id.etExpiryDate);
+
+
         ivBack = view.findViewById(R.id.ivBack);
         tvTitle = view.findViewById(R.id.tvTitle);
         atvIdentificationType = view.findViewById(R.id.atvIdentificationType);
 
         etCnicPassportNumber = view.findViewById(R.id.etCnicPassportNumber);
-        textInputLayoutCnic = view.findViewById(R.id.textInputLayoutCnic);
+
 
         etIssueDate = view.findViewById(R.id.etIssueDate);
-        textInputLayoutIssueDate = view.findViewById(R.id.textInputLayoutIssueDate);
 
-        etExpiryDate = view.findViewById(R.id.etExpiryDate);
-        textInputLayoutExpiryDate = view.findViewById(R.id.textInputLayoutExpiryDate);
 
         etIssuePlace = view.findViewById(R.id.etIssuePlace);
-        textInputLayoutPlace = view.findViewById(R.id.textInputLayoutPlace);
+
 
         checkBox = view.findViewById(R.id.checkBox);
         btnNext = view.findViewById(R.id.btnNext);
@@ -107,13 +117,13 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
         atvIdentificationType.setOnClickListener(this);
         atvIdentificationType.setOnItemClickListener((adapterView, view1, i, l) -> {
             Log.e(TAG, "initViews: ");
-            if(mListIdentificationTypes[i].equals("CNIC") || mListIdentificationTypes[i].equals("SNIC")){
+            if (mListIdentificationTypes[i].equals("CNIC") || mListIdentificationTypes[i].equals("SNIC")) {
                 etCnicPassportNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
                 setMaxLength(etCnicPassportNumber, 13);
                 isPlaceOfIssueEnabled = false;
                 textInputLayoutPlace.setVisibility(View.GONE);
                 obj.setUINTYPE(mListIdentificationTypes[i]);
-            }else{
+            } else {
                 etCnicPassportNumber.setInputType(InputType.TYPE_CLASS_TEXT);
                 setMaxLength(etCnicPassportNumber, 25);
                 isPlaceOfIssueEnabled = true;
@@ -125,11 +135,11 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
+                if (b) {
                     obj.setLIFETIME("Y");
                     etExpiryDate.setText("");
                     etExpiryDate.setEnabled(false);
-                }else{
+                } else {
                     obj.setLIFETIME("Null");
                     etExpiryDate.setEnabled(true);
                 }
@@ -149,6 +159,7 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
         etCnicPassportNumber.setText(obj.getUIN());
         etIssueDate.setText(obj.getISSUEDATE());
         etExpiryDate.setText(obj.getDATEOFEXPIRY());
+        atvIdentificationType.setText(obj.getUINTYPE());
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, mListIdentificationTypes);
         atvIdentificationType.setAdapter(arrayAdapter);
@@ -160,47 +171,49 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
 
     private void setInputsEditAble() {
 
-        if(etCnicPassportNumber.getText().toString().isEmpty()){
+        if (etCnicPassportNumber.getText().toString().isEmpty()) {
             Util.setInputEditable(etCnicPassportNumber, true);
-        }
-        if(obj.getISSUEDATE().isEmpty() || obj.getISSUEDATE()==null){
-            isIssueDateEnabled = true;
+        } else {
+            textInputLayoutCnic.setVisibility(View.GONE);
         }
 
-        if(obj.getDATEOFEXPIRY().isEmpty() || obj.getDATEOFEXPIRY()==null){
+        if (obj.getISSUEDATE().isEmpty() || obj.getISSUEDATE() == null) {
+            isIssueDateEnabled = true;
+        } else {
+            textInputLayoutIssueDate.setVisibility(View.GONE);
+        }
+
+
+        if (obj.getDATEOFEXPIRY().isEmpty() || obj.getDATEOFEXPIRY() == null) {
             checkBox.setEnabled(true);
             isExpiryDateEnabled = true;
-        }else{
+        } else {
             checkBox.setVisibility(View.GONE);
-            //textInputLayoutExpiryDate.setVisibility(View.GONE);
+            textInputLayoutExpiryDate.setVisibility(View.GONE);
         }
 
     }
 
     @Override
     public void onClick(View view) {
-        if(view.getId()==R.id.atvIdentificationType){
+        if (view.getId() == R.id.atvIdentificationType) {
             atvIdentificationType.showDropDown();
-        }
-        else if(view.getId()==R.id.etIssueDate){
-            if(isIssueDateEnabled){
+        } else if (view.getId() == R.id.etIssueDate) {
+            if (isIssueDateEnabled) {
                 pickDate(etIssueDate);
             }
-        }
-        else if(view.getId()==R.id.etExpiryDate){
-            if(isExpiryDateEnabled){
-                if(!checkBox.isChecked()){
+        } else if (view.getId() == R.id.etExpiryDate) {
+            if (isExpiryDateEnabled) {
+                if (!checkBox.isChecked()) {
                     pickDate(etExpiryDate);
                 }
             }
-        }
-        else if(view.getId()==R.id.btnNext){
-            if(isValidInputs()){
-                Log.e(TAG, "placeOfIssue: "+ obj.getISSUEPLACE());
+        } else if (view.getId() == R.id.btnNext) {
+            if (isValidInputs()) {
+                Log.e(TAG, "placeOfIssue: " + obj.getISSUEPLACE());
                 Util.performNavigation(requireActivity(), R.id.action_state2Fragment_to_state3Fragment);
             }
-        }
-        else if(view.getId()==R.id.ivBack){
+        } else if (view.getId() == R.id.ivBack) {
             requireActivity().onBackPressed();
         }
     }
@@ -216,67 +229,65 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
 
     private Boolean isValidInputs() {
 
-        if(atvIdentificationType.getText().toString().isEmpty()){
+        if (atvIdentificationType.getText().toString().isEmpty()) {
             //Show Alert
             Alert.show(requireActivity(), "", "Please select an Identification type.");
             return false;
         }
 
-        if(etCnicPassportNumber.getText().toString().isEmpty()){
+        if (etCnicPassportNumber.getText().toString().isEmpty()) {
             Util.setInputError(etCnicPassportNumber);
             return false;
-        }else{
+        } else {
             obj.setUIN(etCnicPassportNumber.getText().toString());
         }
 
-        if(etIssueDate.getText().toString().isEmpty()){
+        if (etIssueDate.getText().toString().isEmpty()) {
             //Show Alert
             Alert.show(requireActivity(), "", "Please select an Issue date.");
             return false;
-        }else{
+        } else {
             obj.setISSUEDATE(etIssueDate.getText().toString());
         }
 
-        if(!checkBox.isChecked()){
-            if(etExpiryDate.getText().toString().isEmpty()){
+        if (!checkBox.isChecked()) {
+            if (etExpiryDate.getText().toString().isEmpty()) {
                 //Show Alert
                 Alert.show(requireActivity(), "", "Please select an Expiry date.");
                 return false;
-            }else{
+            } else {
                 String issueDate = etIssueDate.getText().toString();
                 String expiryDate = etExpiryDate.getText().toString();
 
-                if(Util.isExpiryDateBeforeToday(expiryDate)){
+                if (Util.isExpiryDateBeforeToday(expiryDate)) {
                     Alert.show(requireActivity(), "", "Expiry date can not be earlier than today.");
                     return false;
-                }else{
+                } else {
                     int compareResult = compareDates(issueDate, expiryDate);
-                    if(compareResult == 0){
+                    if (compareResult == 0) {
                         Alert.show(requireActivity(), "", "Issue and Expiry dates can not be same.");
                         return false;
-                    }
-                    else if(compareResult == 1){
+                    } else if (compareResult == 1) {
                         Alert.show(requireActivity(), "", "Issue date can not be greater than Expiry date.");
                         return false;
-                    }
-                    else{
+                    } else {
                         obj.setDATEOFEXPIRY(etExpiryDate.getText().toString());
                     }
                 }
             }
-        }else{
+        } else {
             obj.setDATEOFEXPIRY("");
         }
 
-        if(isPlaceOfIssueEnabled){
-            if(etIssuePlace.getText().toString().isEmpty()){
+        if (isPlaceOfIssueEnabled) {
+            if (etIssuePlace.getText().toString().isEmpty()) {
                 //Util.setInputEditable(etIssuePlace,true);
                 Util.setInputError(etIssuePlace);
                 return false;
-            }else{
+            } else {
                 obj.setISSUEPLACE(etIssuePlace.getText().toString());
             }
-        }else{
+        } else {
             obj.setISSUEPLACE("");
         }
 
@@ -301,7 +312,7 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
             e.printStackTrace();
         }
 
-        if(date1!=null && date2!=null){
+        if (date1 != null && date2 != null) {
             calendar1.setTime(date1);
             calendar2.setTime(date2);
         }

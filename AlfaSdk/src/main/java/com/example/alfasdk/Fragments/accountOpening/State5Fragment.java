@@ -40,6 +40,13 @@ public class State5Fragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "State5Fragment";
 
+    TextInputLayout TILName;
+    TextInputLayout TILRelationShip;
+    TextInputLayout tilIdentificationType;
+    TextInputLayout tilCnicPassportNumber;
+    TextInputLayout tilIssueDate;
+    TextInputLayout tulExpiryDate;
+
     private ImageView ivBack;
     private TextView tvTitle;
     private TextInputEditText etName;
@@ -74,6 +81,25 @@ public class State5Fragment extends Fragment implements View.OnClickListener {
     private void initViews(View view) {
         obj = ((AccountOpeningActivity) requireActivity()).accountOpeningObject;
 
+        TILName = view.findViewById(R.id.TILName);
+        TILRelationShip = view.findViewById(R.id.TILRelationShip);
+        tilIdentificationType = view.findViewById(R.id.tilIdentificationType);
+        tilCnicPassportNumber = view.findViewById(R.id.tilCnicPassportNumber);
+        tilIssueDate = view.findViewById(R.id.tilIssueDate);
+        tulExpiryDate = view.findViewById(R.id.tulExpiryDate);
+        textInputLayoutPlace = view.findViewById(R.id.textInputLayoutPlace);
+
+
+
+
+
+
+
+
+
+
+
+
         ivBack = view.findViewById(R.id.ivBack);
         tvTitle = view.findViewById(R.id.tvTitle);
         etName = view.findViewById(R.id.etName);
@@ -84,7 +110,7 @@ public class State5Fragment extends Fragment implements View.OnClickListener {
         etExpiryDate = view.findViewById(R.id.etExpiryDate);
         checkBox = view.findViewById(R.id.checkBox);
         etIssuePlace = view.findViewById(R.id.etIssuePlace);
-        textInputLayoutPlace = view.findViewById(R.id.textInputLayoutPlace);
+
         btnNext = view.findViewById(R.id.btnNext);
 
         ivBack.setOnClickListener(this);

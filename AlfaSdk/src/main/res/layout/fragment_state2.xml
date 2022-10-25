@@ -76,6 +76,7 @@
 
                 <!--Identification Type-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilIdentificationType"
                     android:layout_marginTop="0dp"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Identification Type"

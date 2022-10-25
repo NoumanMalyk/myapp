@@ -27,6 +27,15 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "State4Fragment";
 
+
+
+    TextInputLayout AccountName;
+    TextInputLayout TILPBranchname;
+    TextInputLayout BranchCode;
+    TextInputLayout BranchAddress;
+
+
+
     private ImageView ivBack;
     private TextView tvTitle;
     private TextInputEditText etAccountName;
@@ -62,15 +71,40 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
     private void initViews(View view) {
         obj = ((AccountOpeningActivity) requireActivity()).accountOpeningObject;
 
+
+
+
+        AccountName = view.findViewById(R.id.AccountName);
+        textInputLayoutBankName = view.findViewById(R.id.textInputLayoutBankName);
+        textInputLayoutIbanNumber = view.findViewById(R.id.textInputLayoutIbanNumber);
+        TILPBranchname = view.findViewById(R.id.TILPBranchname);
+        BranchCode = view.findViewById(R.id.BranchCode);
+        BranchAddress = view.findViewById(R.id.BranchAddress);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         ivBack = view.findViewById(R.id.ivBack);
         tvTitle = view.findViewById(R.id.tvTitle);
         etAccountName = view.findViewById(R.id.etAccountName);
 
         etBankName = view.findViewById(R.id.etBankName);
-        textInputLayoutBankName = view.findViewById(R.id.textInputLayoutBankName);
+
 
         etIbanNumber = view.findViewById(R.id.etIbanNumber);
-        textInputLayoutIbanNumber = view.findViewById(R.id.textInputLayoutIbanNumber);
+
 
         etBranchName = view.findViewById(R.id.etBranchName);
         etBranchCode = view.findViewById(R.id.etBranchCode);
@@ -111,23 +145,43 @@ public class State4Fragment extends Fragment implements View.OnClickListener {
         if(obj.getBANKACCOUNTTITLE().isEmpty() || obj.getBANKACCOUNTTITLE()==null){
             Util.setInputEditable(etAccountName, true);
         }
+        else
+        {
+            AccountName.setVisibility(View.GONE);
+        }
 
         if(obj.getBANKNAME().isEmpty() || obj.getBANKNAME()==null){
             Util.setInputEditable(etBankName, true);
+        }else
+        {
+            textInputLayoutBankName.setVisibility(View.GONE);
         }
 
         if(obj.getIBAN().isEmpty() || obj.getIBAN()==null){
             Util.setInputEditable(etIbanNumber, true);
+        }else
+        {
+            textInputLayoutIbanNumber.setVisibility(View.GONE);
         }
 
         if(obj.getBRANCHNAME().isEmpty() || obj.getBRANCHNAME()==null){
             Util.setInputEditable(etBranchName, true);
+        }else
+        {
+            TILPBranchname.setVisibility(View.GONE);
         }
         if(obj.getBRANCHCODE().isEmpty() || obj.getBRANCHCODE()==null){
             Util.setInputEditable(etBranchCode, true);
+        }else
+        {
+            BranchCode.setVisibility(View.GONE);
         }
+
         if(obj.getBRANCHADDRESS().isEmpty() || obj.getBRANCHADDRESS()==null){
             Util.setInputEditable(etBranchAddress, true);
+        }else
+        {
+            BranchAddress.setVisibility(View.GONE);
         }
 
     }

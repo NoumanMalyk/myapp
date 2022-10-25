@@ -83,6 +83,7 @@
 
                     <!--Bank Account Title-->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/AccountName"
                         android:layout_marginTop="0dp"
                         style="@style/TextInputLayoutStyle"
                         android:hint="Account Name"
@@ -135,6 +136,7 @@
 
                     <!--Branch Name-->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/TILPBranchname"
                         style="@style/TextInputLayoutStyle"
                         android:hint="Branch Name"
                         android:layout_width="match_parent"
@@ -151,6 +153,7 @@
 
                     <!--Branch Code-->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/BranchCode"
                         style="@style/TextInputLayoutStyle"
                         android:hint="Branch Code"
                         android:layout_width="match_parent"
@@ -167,6 +170,7 @@
 
                     <!--Branch Address-->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/BranchAddress"
                         style="@style/TextInputLayoutStyle"
                         android:hint="Branch Address"
                         android:layout_width="match_parent"

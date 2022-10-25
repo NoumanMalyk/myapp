@@ -94,7 +94,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
     private TextView tvFileName4;
     private ImageView ivAdd4;
     private ImageView ivRemove4;
-    
+
     //    private ImageView ivProofIncomeSource;
 //    private TextView tvFileName5;
 //    private ImageView ivAdd5;
@@ -104,7 +104,7 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
 //    private TextView tvFileName6;
 //    private ImageView ivAdd6;
 //    private ImageView ivRemove6;
-    
+
     private ImageView ivZakatForm;
     private TextView tvFileName7;
     private ImageView ivAdd7;
@@ -729,14 +729,18 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
 
         String textTermOfService = getString(R.string.termsOfService);
         String textPrivacyPolicy = getString(R.string.privacyPolicy);
+        String sahulat = getString(R.string.sahulat);
 
         SpannableStringBuilder ssb = new SpannableStringBuilder("");
         ssb.append("I agree to the ");
 
         addClickableText(ssb, ssb.length(), textTermOfService, "", textTermOfService);
-        ssb.append(" and ");
+        ssb.append(", ");
 
         addClickableText(ssb, ssb.length(), textPrivacyPolicy, "", textPrivacyPolicy);
+        ssb.append(" and ");
+
+        addClickableText(ssb, ssb.length(), sahulat, "", sahulat);
         ssb.append(".");
 
         tvTermsAndPrivacyPolicy.setMovementMethod(LinkMovementMethod.getInstance());
@@ -748,6 +752,5 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
         ssb.append(clickableText);
         ssb.setSpan(new MyClickableSpan(requireActivity(), title, link, ContextCompat.getColor(requireActivity(), R.color.colorSpanningLink)), startPos, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
-
 
 }

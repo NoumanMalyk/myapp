@@ -104,50 +104,69 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
     }
 
     private void initViews(View view) {
+
+        textInputLayoutMailingAddress = view.findViewById(R.id.textInputLayoutMailingAddress);
+        textInputLayoutMailingCountry = view.findViewById(R.id.textInputLayoutMailingCountry);
+        textInputLayoutMailingProvince = view.findViewById(R.id.textInputLayoutMailingProvince);
+        textInputLayoutMailingCity = view.findViewById(R.id.textInputLayoutMailingCity);
+        textInputLayoutTelOff = view.findViewById(R.id.textInputLayoutTelOff);
+        textInputLayoutTelRes = view.findViewById(R.id.textInputLayoutTelRes);
+        textInputLayoutFax = view.findViewById(R.id.textInputLayoutFax);
+        textInputLayoutMobile = view.findViewById(R.id.textInputLayoutMobile);
+        textInputLayoutEmail = view.findViewById(R.id.textInputLayoutEmail);
+        textInputLayoutPermanentAddress = view.findViewById(R.id.textInputLayoutPermanentAddress);
+        textInputLayoutPermanentCity = view.findViewById(R.id.textInputLayoutPermanentCity);
+        textInputLayoutPermanentProvince = view.findViewById(R.id.textInputLayoutPermanentProvince);
+        textInputLayoutPermanentCountry = view.findViewById(R.id.textInputLayoutPermanentCountry);
+
+
+
+
+
         obj = ((AccountOpeningActivity) requireActivity()).accountOpeningObject;
         ivBack = view.findViewById(R.id.ivBack);
         tvTitle = view.findViewById(R.id.tvTitle);
 
         etMailingAddress = view.findViewById(R.id.etMailingAddress);
-        textInputLayoutMailingAddress = view.findViewById(R.id.textInputLayoutMailingAddress);
+
 
         atvMailingCity = view.findViewById(R.id.atvMailingCity);
-        textInputLayoutMailingCity = view.findViewById(R.id.textInputLayoutMailingCity);
+
 
         atvMailingProvince = view.findViewById(R.id.atvMailingProvince);
-        textInputLayoutMailingProvince = view.findViewById(R.id.textInputLayoutMailingProvince);
+
 
         etMailingCountry = view.findViewById(R.id.etMailingCountry);
-        textInputLayoutMailingCountry = view.findViewById(R.id.textInputLayoutMailingCountry);
+
 
         etTelOff = view.findViewById(R.id.etTelOff);
-        textInputLayoutTelOff = view.findViewById(R.id.textInputLayoutTelOff);
+
 
         etTelRes = view.findViewById(R.id.etTelRes);
-        textInputLayoutTelRes = view.findViewById(R.id.textInputLayoutTelRes);
+
 
         etFax = view.findViewById(R.id.etFax);
-        textInputLayoutFax = view.findViewById(R.id.textInputLayoutFax);
+
 
         etMobile = view.findViewById(R.id.etMobile);
-        textInputLayoutMobile = view.findViewById(R.id.textInputLayoutMobile);
+
 
         etEmail = view.findViewById(R.id.etEmail);
-        textInputLayoutEmail = view.findViewById(R.id.textInputLayoutEmail);
+
 
 
         checkBox = view.findViewById(R.id.checkBox);
         etPermanentAddress = view.findViewById(R.id.etPermanentAddress);
-        textInputLayoutPermanentAddress = view.findViewById(R.id.textInputLayoutPermanentAddress);
+
 
         atvPermanentCity = view.findViewById(R.id.atvPermanentCity);
-        textInputLayoutPermanentCity = view.findViewById(R.id.textInputLayoutPermanentCity);
+
 
         atvPermanentProvince = view.findViewById(R.id.atvPermanentProvince);
-        textInputLayoutPermanentProvince = view.findViewById(R.id.textInputLayoutPermanentProvince);
+
 
         etPermanentCountry = view.findViewById(R.id.etPermanentCountry);
-        textInputLayoutPermanentCountry = view.findViewById(R.id.textInputLayoutPermanentCountry);
+
 
         btnNext = view.findViewById(R.id.btnNext);
 
@@ -246,44 +265,78 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
         if(obj.getMAILINGADDRESS1().isEmpty() || obj.getMAILINGADDRESS1()==null){
             Util.setInputEditable(etMailingAddress, true);
         }
+        else
+        {
+            textInputLayoutMailingAddress.setVisibility(View.GONE);
+        }
 
         if(obj.getCITYTOWNVILLAGE().isEmpty() || obj.getCITYTOWNVILLAGE()==null){
             Util.setInputEditable(atvMailingCity, true);
             atvMailingCity.setThreshold(0);
             atvMailingCity.setAdapter(customArrayAdapter);
         }
+        else
+        {
+            textInputLayoutMailingCity.setVisibility(View.GONE);
+        }
 
         if(obj.getPROVINCESTATE().isEmpty() || obj.getPROVINCESTATE()==null){
             isMailingProvinceEnabled = true;
             atvMailingProvince.setAdapter(arrayAdapterProvinces);
+        } else
+        {
+            textInputLayoutMailingProvince.setVisibility(View.GONE);
         }
+
 
         if(obj.getCOUNTRY().isEmpty() || obj.getCOUNTRY()==null){
             Util.setInputEditable(etMailingCountry, true);
+        }else
+        {
+            textInputLayoutMailingCountry.setVisibility(View.GONE);
         }
 
         if(obj.getTELEPHONEOFFICE().isEmpty() || obj.getTELEPHONEOFFICE()==null){
             Util.setInputEditable(etTelOff, true);
+        }else
+        {
+            textInputLayoutTelOff.setVisibility(View.GONE);
         }
 
         if(obj.getTELEPHONERESIDENCE().isEmpty() || obj.getTELEPHONERESIDENCE()==null){
             Util.setInputEditable(etTelRes, true);
+        }else
+        {
+            textInputLayoutTelRes.setVisibility(View.GONE);
         }
 
         if(obj.getFAX().isEmpty() || obj.getFAX()==null){
             Util.setInputEditable(etFax, true);
+        }else
+        {
+            textInputLayoutFax.setVisibility(View.GONE);
         }
 
         if(obj.getMOBILENO().isEmpty() || obj.getMOBILENO()==null){
             Util.setInputEditable(etMobile, true);
+        }else
+        {
+            textInputLayoutMobile.setVisibility(View.GONE);
         }
 
         if(obj.getEMAIL().isEmpty() || obj.getEMAIL()==null){
             Util.setInputEditable(etEmail, true);
+        }else
+        {
+            textInputLayoutEmail
+                    .setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTADDRESS1().isEmpty() || obj.getPERMANENTADDRESS1()==null){
             Util.setInputEditable(etPermanentAddress, true);
+        }else
+        {
+            textInputLayoutPermanentAddress.setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTCITYTOWN().isEmpty() || obj.getPERMANENTCITYTOWN()==null){
@@ -291,15 +344,25 @@ public class State3Fragment extends Fragment implements View.OnClickListener {
             Util.setInputEditable(atvPermanentCity, true);
             atvPermanentCity.setThreshold(0);
             atvPermanentCity.setAdapter(customArrayAdapter);
+        }else
+        {
+          textInputLayoutPermanentCity
+                    .setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTPROVINCE().isEmpty() || obj.getPERMANENTPROVINCE()==null){
             isPermanentProvinceEnabled = true;
             atvPermanentProvince.setAdapter(arrayAdapterProvinces);
+        }else
+        {
+            textInputLayoutPermanentProvince.setVisibility(View.GONE);
         }
 
         if(obj.getPERMANENTCOUNTRY().isEmpty() || obj.getPERMANENTCOUNTRY()==null){
             Util.setInputEditable(etPermanentCountry, true);
+        }else
+        {
+            textInputLayoutPermanentCountry.setVisibility(View.GONE);
         }
 
     }

@@ -77,6 +77,7 @@
 
                 <!--Q1-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilQ1"
                     android:layout_marginTop="0dp"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Q1"
@@ -93,6 +94,7 @@
 
                 <!--Q2-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilQ2"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Q2"
                     android:layout_width="match_parent"
@@ -108,6 +110,7 @@
 
                 <!--Q3-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilQ3"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Q3"
                     android:layout_width="match_parent"
@@ -123,6 +126,7 @@
 
                 <!--Q4-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilQ4"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Q4"
                     android:layout_width="match_parent"

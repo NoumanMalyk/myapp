@@ -78,6 +78,7 @@
 
                 <!--Occupation-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilOccupation"
                     android:layout_marginTop="0dp"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Occupation"
@@ -97,6 +98,7 @@
 
                 <!--Gross Annual Income Detail-->
                 <com.google.android.material.textfield.TextInputLayout
+
                     android:visibility="gone"
                     android:id="@+id/textInputLayoutOther"
                     style="@style/TextInputLayoutStyle"
@@ -112,6 +114,7 @@
 
                 <!--Gross Annual Income Detail-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilGrossAnnualIncome"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Gross Annual Income"
                     app:endIconDrawable="@drawable/ic_drop_down"
@@ -130,6 +133,7 @@
 
                 <!--Source of Income-->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilIncomeSource"
                     style="@style/TextInputLayoutStyle"
                     android:hint="Source of Income"
                     android:layout_width="match_parent"

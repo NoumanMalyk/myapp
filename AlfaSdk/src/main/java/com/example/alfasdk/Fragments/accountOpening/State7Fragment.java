@@ -17,9 +17,21 @@ import com.example.alfasdk.R;
 import com.example.alfasdk.Util.Alert;
 import com.example.alfasdk.Util.Util;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 
 public class State7Fragment extends Fragment {
+
+    TextInputLayout tilFatcaClassification;
+    TextInputLayout tilQ2;
+    TextInputLayout tilQ3;
+    TextInputLayout tilQ4;
+    TextInputLayout tilQ5;
+
+
+
+
+
 
     private ImageView ivBack;
     private TextView tvTitle;
@@ -54,7 +66,14 @@ public class State7Fragment extends Fragment {
     }
 
     private void initViews(View view) {
-        
+
+
+        tilFatcaClassification = view.findViewById(R.id.tilFatcaClassification);
+        tilQ2 = view.findViewById(R.id.tilQ2);
+        tilQ3 = view.findViewById(R.id.tilQ3);
+        tilQ4 = view.findViewById(R.id.tilQ2);
+        tilQ5 = view.findViewById(R.id.tilQ5);
+
         ivBack = view.findViewById(R.id.ivBack);
         tvTitle = view.findViewById(R.id.tvTitle);
         etFatcaClassification = view.findViewById(R.id.etFatcaClassification);

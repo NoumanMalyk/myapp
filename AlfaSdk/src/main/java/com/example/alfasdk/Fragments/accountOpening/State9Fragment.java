@@ -16,9 +16,17 @@ import android.widget.TextView;
 import com.example.alfasdk.R;
 import com.example.alfasdk.Util.Util;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 
 public class State9Fragment extends Fragment {
+
+    TextInputLayout tilQ1;
+    TextInputLayout tilQ2;
+    TextInputLayout tilQ3;
+    TextInputLayout tilQ4;
+
+
 
     private ImageView ivBack;
     private TextView tvTitle;
@@ -50,6 +58,16 @@ public class State9Fragment extends Fragment {
     }
 
     private void initViews(View view) {
+
+        tilQ1 = view.findViewById(R.id.tilQ1);
+        tilQ2 = view.findViewById(R.id.tilQ2);
+        tilQ2 = view.findViewById(R.id.tilQ3);
+        tilQ2 = view.findViewById(R.id.tilQ4);
+
+
+
+
+
 
         ivBack = view.findViewById(R.id.ivBack);
         tvTitle = view.findViewById(R.id.tvTitle);
