@@ -27,7 +27,7 @@ public class MainActivityApp extends MyLoginActivity {
             Intent intent = new Intent(this, AccountOpeningActivity.class);
 
             //For Empty data object
-            intent.putExtra("accountOpeningObject", new AccountOpeningObject());
+            intent.putExtra("accountOpeningObject", getModelObject());
 
             //For Filled data object
 //            AccountOpeningObject accountOpeningObject = getModelObject();

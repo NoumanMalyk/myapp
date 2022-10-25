@@ -114,7 +114,7 @@ public class Constants {
 
 
     public static final String KASB_API_LOGIN = "";
-    public  static final String RESEARCH_PORTAL_URL="http://www.e-falah.com/api/v2/service/authenticate";
+    public  static final String RESEARCH_PORTAL_URL="https://www.e-falah.com/api/v2/service/authenticate";
     public  static final String RESESRCH_PORTAL_CLIENT="atif.khan";
     public  static final String RESESRCH_PORTAL_IP="203.17577.130";
     public  static  String LOGIN_RESPONSE="";
