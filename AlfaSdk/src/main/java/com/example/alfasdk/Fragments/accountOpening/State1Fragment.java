@@ -200,11 +200,11 @@ public class State1Fragment extends Fragment implements View.OnClickListener {
         inputNationality.setVisibility(View.GONE);
         textInputLayoutResidentialStatus.setVisibility(View.GONE);
 
-        if (obj.getNAME().isEmpty() || obj.getNAME() == null) {
-
-        } else {
-            textInputLayoutName.setVisibility(View.GONE);
-        }
+//        if (obj.getNAME().isEmpty() || obj.getNAME() == null) {
+//
+//        } else {
+//            textInputLayoutName.setVisibility(View.GONE);
+//        }
 
 
         if (!obj.getFATHERHUSBANDNAME().isEmpty()) {

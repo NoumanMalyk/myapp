@@ -64,12 +64,12 @@ public class MainActivityApp extends MyLoginActivity {
         accountOpeningObject.setCOUNTRY("");
         accountOpeningObject.setTELEPHONEOFFICE("03xxxxxxxxx");
         accountOpeningObject.setTELEPHONERESIDENCE("03xxxxxxxxx");
-        accountOpeningObject.setFAX("N/A");
+        accountOpeningObject.setFAX("");
         accountOpeningObject.setMOBILENO("N/A");
         accountOpeningObject.setEMAIL("developer@gmail.com");
         accountOpeningObject.setPERMANENTADDRESS1("XYZ");
         accountOpeningObject.setPERMANENTCITYTOWN("Lahore");
-        accountOpeningObject.setPERMANENTPROVINCE("Punjab");
+        accountOpeningObject.setPERMANENTPROVINCE("");
         accountOpeningObject.setPERMANENTCOUNTRY("Pakistan");
 
         //Page No.4

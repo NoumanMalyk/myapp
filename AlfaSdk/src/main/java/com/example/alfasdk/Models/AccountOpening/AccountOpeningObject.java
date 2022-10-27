@@ -267,6 +267,28 @@ public class AccountOpeningObject implements Serializable {
 	@SerializedName("BANK_NAME")
 	private String bANKNAME="";
 
+	@SerializedName("mailing")
+	private String mailing="";
+
+	@SerializedName("permanent")
+	private String permanent="";
+
+	public String getMailing() {
+		return mailing;
+	}
+
+	public void setMailing(String mailing) {
+		this.mailing = mailing;
+	}
+
+	public String getPermanent() {
+		return permanent;
+	}
+
+	public void setPermanent(String permanent) {
+		this.permanent = permanent;
+	}
+
 	public void setFATCAQ5(String fATCAQ5){
 		this.fATCAQ5 = fATCAQ5;
 	}

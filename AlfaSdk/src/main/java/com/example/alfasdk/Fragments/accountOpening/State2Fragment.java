@@ -39,6 +39,9 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "State2Fragment";
 
+    boolean isMailingAddressAvailable = false;
+    boolean isPermanentAddressAvailable = false;
+
     private ImageView ivBack;
     private TextView tvTitle;
 
@@ -209,10 +212,27 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
                 }
             }
         } else if (view.getId() == R.id.btnNext) {
-            if (isValidInputs()) {
-                Log.e(TAG, "placeOfIssue: " + obj.getISSUEPLACE());
-                Util.performNavigation(requireActivity(), R.id.action_state2Fragment_to_state3Fragment);
+            skipAddressScreen();
+            if (!isMailingAddressAvailable && !isPermanentAddressAvailable) {
+                Util.performNavigation(requireActivity(), R.id.action_state2Fragment_to_state4Fragment2);
+            } else {
+                if (isValidInputs()) {
+                    Log.e(TAG, "placeOfIssue: " + obj.getISSUEPLACE());
+                    if (isMailingAddressAvailable) {
+                        obj.setMailing("1");
+                    } else {
+                        obj.setMailing("0");
+                    }
+
+                    if (isPermanentAddressAvailable) {
+                        obj.setPermanent("1");
+                    } else {
+                        obj.setPermanent("0");
+                    }
+                    Util.performNavigation(requireActivity(), R.id.action_state2Fragment_to_state3Fragment);
+                }
             }
+
         } else if (view.getId() == R.id.ivBack) {
             requireActivity().onBackPressed();
         }
@@ -323,6 +343,49 @@ public class State2Fragment extends Fragment implements View.OnClickListener {
     public void onStart() {
         super.onStart();
         ((AccountOpeningActivity) requireActivity()).stepView.go(1, true);
+    }
+
+    private void setNextStepColor(int steps) {
+        ((AccountOpeningActivity) requireActivity()).stepView.setStepsNumber(steps);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    public void skipAddressScreen() {
+        if (obj.getCOUNTRY().isEmpty() || obj.getCOUNTRY() == null) {
+            obj.setCOUNTRY("Pakistan");
+        }
+        if (obj.getPERMANENTCOUNTRY().isEmpty() || obj.getPERMANENTCOUNTRY() == null) {
+            obj.setPERMANENTCOUNTRY("Pakistan");
+        }
+        if (obj.getMAILINGADDRESS1().isEmpty() || obj.getMAILINGADDRESS1() == null) {
+            isMailingAddressAvailable = true;
+        } else if (obj.getCITYTOWNVILLAGE().isEmpty() || obj.getCITYTOWNVILLAGE() == null) {
+            isMailingAddressAvailable = true;
+        } else if (obj.getPROVINCESTATE().isEmpty() || obj.getPROVINCESTATE() == null) {
+            isMailingAddressAvailable = true;
+        } else if (obj.getTELEPHONEOFFICE().isEmpty() || obj.getTELEPHONEOFFICE() == null) {
+            isMailingAddressAvailable = true;
+        } else if (obj.getTELEPHONERESIDENCE().isEmpty() || obj.getTELEPHONERESIDENCE() == null) {
+            isMailingAddressAvailable = true;
+        } else if (obj.getFAX().isEmpty() || obj.getFAX() == null) {
+            isMailingAddressAvailable = true;
+        } else if (obj.getMOBILENO().isEmpty() || obj.getMOBILENO() == null) {
+            isMailingAddressAvailable = true;
+        } else if (obj.getEMAIL().isEmpty() || obj.getEMAIL() == null) {
+            isMailingAddressAvailable = true;
+        }
+
+        if (obj.getPERMANENTADDRESS1().isEmpty() || obj.getPERMANENTADDRESS1() == null) {
+            isPermanentAddressAvailable = true;
+        } else if (obj.getPERMANENTCITYTOWN().isEmpty() || obj.getPERMANENTCITYTOWN() == null) {
+            isPermanentAddressAvailable = true;
+        } else if (obj.getPERMANENTPROVINCE().isEmpty() || obj.getPERMANENTPROVINCE() == null) {
+            isPermanentAddressAvailable = true;
+        }
     }
 
 }

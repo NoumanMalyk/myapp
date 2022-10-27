@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_state2Fragment_to_state3Fragment"
             app:destination="@id/state3Fragment" />
+        <action
+            android:id="@+id/action_state2Fragment_to_state4Fragment2"
+            app:destination="@id/state4Fragment" />
     </fragment>
     <fragment
         android:id="@+id/state3Fragment"
@@ -30,6 +33,14 @@
         <action
             android:id="@+id/action_state3Fragment_to_state4Fragment"
             app:destination="@id/state4Fragment" />
+        <argument
+            android:name="mailing"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="permanent"
+            app:argType="string"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/state4Fragment"
