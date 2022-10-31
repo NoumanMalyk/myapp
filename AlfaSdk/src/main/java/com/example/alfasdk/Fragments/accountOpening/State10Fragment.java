@@ -405,6 +405,8 @@ public class State10Fragment extends Fragment implements View.OnClickListener {
                             Log.e(TAG, "Success: ");
                             showAlert();
                         }
+
+
                         else if(response.body().getCode().equals("16")){
                             Log.e(TAG, "invalid: ");
                             Alert.show(requireActivity(), "Error", "Invalid Data.");
